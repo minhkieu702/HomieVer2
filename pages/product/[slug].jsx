@@ -3,10 +3,6 @@ import BreadCrumb from "../../components/breadCrumb/BreadCrumb";
 import Link from "next/link";
 import Tabs from "../../components/tabs/Tabs";
 import FeaturedProductHeader from "../../components/section/featuredProduct/FeaturedProductHeader";
-import { useRef } from "react";
-import { FaChevronLeft } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import styles from "../../styles/Home.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -24,7 +20,7 @@ const ProductDetail = ({ product, category, filteredProducts }) => {
 
   const settings = {
     dots: true,
-    // infinite: true,
+    infinite: false,
     loop: true,
     speed: 250,
     slidesToShow: 5,
@@ -310,7 +306,7 @@ const ProductDetail = ({ product, category, filteredProducts }) => {
 };
 
 export async function getStaticPaths() {
-  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/products`);
+  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   const products = await productsResponse.json();
 
   const paths = products.map((p) => ({
@@ -328,10 +324,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const productCode = params.slug;
 
-  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/products`);
+  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   const products = await productsResponse.json();
 
-  const categoriesResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/categories`);
+  const categoriesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
   const categories = await categoriesResponse.json();
 
   const product = products.find((product) => product.code === productCode);
