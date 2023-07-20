@@ -152,7 +152,7 @@ export default ShopLeft;
 
 
 export async function getStaticPaths() {
-  const categoriesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+  const categoriesResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/categories`);
   const categories = await categoriesResponse.json();
 
   const paths = categories.map((c) => ({

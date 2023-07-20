@@ -147,7 +147,7 @@ export default shopleft;
 
 
 export async function getStaticPaths() {
-  const collectionsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections`);
+  const collectionsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/collections`);
   const collections = await collectionsResponse.json();
 
   const paths = collections.map((c) => ({
@@ -163,9 +163,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/products`);
   const products = await productsResponse.json();
-  const collectionsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections`);
+  const collectionsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/collections`);
   const collections = await collectionsResponse.json();
 
   const collectionId = params.slug;
