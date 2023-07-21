@@ -169,11 +169,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   
-  const categoriesResponse = await fetch(`http://localhost:3000/api/categories`);
+  const categoriesResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/categories`);
   const categories = await categoriesResponse.json();
-  const productsResponse = await fetch(`http://localhost:3000/api/products`);
+  const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/products`);
   const products = await productsResponse.json();
-  const collectionsResponse = await fetch(`http://localhost:3000/api/collections`);
+  const collectionsResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/collections`);
   const collections = await collectionsResponse.json();
   
   const categoryId = params.slug;
